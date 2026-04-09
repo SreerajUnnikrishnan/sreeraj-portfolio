@@ -71,6 +71,7 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     background: rgba(5, 5, 5, 0.8);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid var(--glass-border);
@@ -125,7 +126,6 @@ a:hover {
 }
 
 section {
-    min-height: auto;
     padding: 80px 10%;
     display: flex;
     flex-direction: column;
@@ -188,7 +188,7 @@ section {
 
     0%,
     100% {
-        opacity: 1;
+        opacity: 0;
     }
 
     50% {
@@ -389,6 +389,14 @@ h3 {
 
 .timeline-content:hover {
     border-color: var(--primary-color);
+}
+
+.education-list {
+    margin-top: 15px;
+    margin-left: 20px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 .contact {
