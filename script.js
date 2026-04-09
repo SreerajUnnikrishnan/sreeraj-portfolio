@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Typing Effect for Hero
-    const roles = ["Junior Penetration Tester", "Ethical Hacker"];
+    const roles = ["Junior Penetration Tester"];
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -24,7 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!isDeleting && charIndex === currentRole.length) {
             typeSpeed = newTextDelay;
-            isDeleting = true;
+            if (roles.length > 1) {
+                isDeleting = true;
+            } else {
+                // Stop blinking cursor or let it blink but stop the animation loop
+                return;
+            }
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             roleIndex = (roleIndex + 1) % roles.length;
