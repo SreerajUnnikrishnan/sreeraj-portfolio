@@ -1,0 +1,23 @@
+{
+  "name": "sreeraj-unnikrishnan-portfolio",
+  "version": "1.0.0",
+  "description": "Futuristic AI-powered cybersecurity portfolio website for Sreeraj Unnikrishnan",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "cybersecurity",
+    "portfolio",
+    "ethical-hacking",
+    "ai-defense"
+  ],
+  "author": "Sreeraj Unnikrishnan",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
