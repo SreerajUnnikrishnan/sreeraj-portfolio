@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCountUp();
   initModals();
   initToast();
+  initContactForm();
 });
 
 /* ==========================================================================
@@ -303,27 +304,6 @@ const modalData = {
     techStack: ['Python', 'PyTorch', 'Flower (FL Framework)', 'Paillier Cryptosystem', 'NumPy', 'Research Benchmarks'],
     githubUrl: 'https://github.com/SreerajUnnikrishnan'
   },
-  chikarro: {
-    tag: 'CLIENT PROJECT · KUWAIT',
-    title: 'CHIKARRO Fried Chicken Kuwait: Modern Restaurant Digital Platform',
-    subtitle: 'Custom High-Conversion Restaurant Web App & Direct WhatsApp Ordering Flow',
-    image: 'assets/chikarro_showcase.png',
-    description: 'Designed and developed the full digital presence for CHIKARRO Fried Chicken in Kuwait. The project delivered a blazing fast, appetite-inducing responsive website complete with interactive menus, dynamic combo customizers, Kuwait localization, and automated WhatsApp order dispatch.',
-    highlights: [
-      'Bespoke Visual Identity: Warm crimson, golden-amber, and crisp typography tailored to Kuwait fast-casual market.',
-      'Frictionless Ordering Flow: Customers customize items and dispatch formatted orders directly to WhatsApp staff.',
-      'Performance Optimized: Sub-second load times on mobile 4G/5G connections with 99+ Google Lighthouse score.',
-      'Interactive Menu Showcase: High-definition product visuals, portion sizes, ingredients, and currency (KWD).'
-    ],
-    techStack: ['Next.js', 'React', 'Tailwind CSS', 'Supabase', 'WhatsApp Business API', 'Vercel Edge'],
-    meta: {
-      role: 'Web Designer & Full-Stack Developer',
-      type: 'Commercial Client Website',
-      location: 'Kuwait',
-      status: 'Delivered & Production Ready'
-    },
-    liveUrl: 'https://www.chikarrosalmiya.com'
-  },
   ocsp: {
     tag: 'CERTIFICATION CREDENTIAL',
     title: 'Offenso Certified Security Professional (OCSP)',
@@ -342,11 +322,12 @@ const modalData = {
     tag: 'SECURITY LAB · EXPLOITATION',
     title: 'Metasploitable Lab & Vulnerability Exploitation',
     subtitle: 'Simulated Target Environments & Exploit Verification',
+    image: 'assets/metasploitable.png',
     description: 'Hands-on laboratory dedicated to simulating vulnerable infrastructure, analyzing exploit payload behavior, verifying CVE attack vectors, and testing defensive endpoint response policies.',
     highlights: [
       'SMB, FTP, RPC service exploitation and misconfiguration auditing.',
       'Custom exploit payload creation and staged meterpreter sessions.',
-      'Vulnerability validation before remediation recommendation in client networks.',
+      'Vulnerability validation before remediation recommendation in enterprise networks.',
       'Behavioral logging and signature generation for defensive alerting.'
     ],
     techStack: ['Metasploitable 2/3', 'Metasploit Framework', 'Nmap', 'Wireshark', 'Python Scripting']
@@ -355,6 +336,7 @@ const modalData = {
     tag: 'SECURITY LAB · WEB SECURITY',
     title: 'OWASP Top 10 Exploitation & Hardening Labs',
     subtitle: 'Web Application Attack Vectors & Secure Code Review',
+    image: 'assets/owasp-labs.png',
     description: 'Comprehensive research into modern web application security vulnerabilities including Broken Object Level Authorization (BOLA), SQL Injection, Cross-Site Scripting (XSS), Server-Side Request Forgery (SSRF), and CSRF bypass mechanisms.',
     highlights: [
       'Testing authentication token tampering, JWT key confusion, and OAuth misconfigurations.',
@@ -368,6 +350,7 @@ const modalData = {
     tag: 'SECURITY LAB · ENTERPRISE',
     title: 'Active Directory & Domain Privilege Escalation Lab',
     subtitle: 'Kerberos Attacks, Domain Enumeration & Lateral Movement',
+    image: 'assets/active-directory.png',
     description: 'Advanced homelab environment simulating corporate Active Directory topologies. Focuses on identity attack chains, Kerberoasting, AS-REP roasting, BloodHound path discovery, and domain controller auditing.',
     highlights: [
       'BloodHound graph analysis to uncover hidden domain administrator paths.',
@@ -381,6 +364,7 @@ const modalData = {
     tag: 'SECURITY LAB · WEB EXPLOITATION',
     title: 'Advanced Web Exploitation & Bug Bounty Practice',
     subtitle: 'Modern Web Architectures, Microservices & Cloud API Audits',
+    image: 'assets/web-exploitation.png',
     description: 'In-depth laboratory analyzing modern web application architectures, headless APIs, microservices, and serverless backends for business logic flaws, race conditions, and deserialization vulnerabilities.',
     highlights: [
       'Race condition testing in order processing and coupon systems.',
@@ -394,6 +378,7 @@ const modalData = {
     tag: 'SECURITY LAB · NETWORK RECON',
     title: 'Network Enumeration & Traffic Dissection Lab',
     subtitle: 'Deep Packet Inspection, Protocol Auditing & Banner Fingerprinting',
+    image: 'assets/network-enumeration.png',
     description: 'Laboratory environment dedicated to protocol reverse engineering, deep packet inspection, stealth port scanning, firewall evasion, and custom NSE script development.',
     highlights: [
       'Crafting custom Nmap NSE scripts for rapid service fingerprinting.',
@@ -418,44 +403,22 @@ function initModals() {
 
     let html = `
       <div class="modal-content-body">
-        <span class="section-tag ${data.tag.includes('CLIENT') ? 'amber' : data.tag.includes('PUBLICATION') ? 'violet' : 'cyan'}">
-          <i class="fa-solid fa-shield-halved"></i> ${data.tag}
-        </span>
-        <h2 style="font-size: 2.1rem; font-weight: 800; color: #fff; margin-top: 12px; margin-bottom: 8px; line-height: 1.2;">
-          ${data.title}
-        </h2>
-        <p style="font-family: var(--font-mono); font-size: 0.92rem; color: var(--accent-cyan); margin-bottom: 24px;">
-          ${data.subtitle || ''}
-        </p>
+        <span class="section-tag ${data.tag.includes('PUBLICATION') ? 'violet' : 'cyan'}">
+        <i class="fa-solid fa-shield-halved"></i> ${data.tag}
+      </span>
+      <h2 style="font-size: 2.1rem; font-weight: 800; color: #fff; margin-top: 12px; margin-bottom: 8px; line-height: 1.2;">
+        ${data.title}
+      </h2>
+      <p style="font-family: var(--font-mono); font-size: 0.92rem; color: var(--accent-cyan); margin-bottom: 24px;">
+        ${data.subtitle || ''}
+      </p>
     `;
 
     if (data.image) {
+      const isSquare = data.image.includes('metasploitable') || data.image.includes('owasp') || data.image.includes('active-directory') || data.image.includes('web-exploitation') || data.image.includes('network-enumeration');
       html += `
-        <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid rgba(255,255,255,0.12); margin-bottom: 28px; box-shadow: 0 12px 30px rgba(0,0,0,0.7); background: #ffffff;">
-          <img src="${data.image}" alt="${data.title}" style="width: 100%; height: auto; display: block;">
-        </div>
-      `;
-    }
-
-    if (data.meta) {
-      html += `
-        <div class="client-meta-grid" style="margin-bottom: 24px;">
-          <div class="client-meta-item">
-            <div class="meta-label">Role</div>
-            <div class="meta-value">${data.meta.role}</div>
-          </div>
-          <div class="client-meta-item">
-            <div class="meta-label">Type</div>
-            <div class="meta-value">${data.meta.type}</div>
-          </div>
-          <div class="client-meta-item">
-            <div class="meta-label">Location</div>
-            <div class="meta-value">${data.meta.location}</div>
-          </div>
-          <div class="client-meta-item">
-            <div class="meta-label">Status</div>
-            <div class="meta-value">${data.meta.status}</div>
-          </div>
+        <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid rgba(255,255,255,0.12); margin-bottom: 28px; box-shadow: 0 12px 30px rgba(0,0,0,0.7); background: #07090e; display: flex; justify-content: center; align-items: center; ${isSquare ? 'max-height: 380px; padding: 12px;' : ''}">
+          <img src="${data.image}" alt="${data.title}" style="width: ${isSquare ? 'auto' : '100%'}; max-width: 100%; height: ${isSquare ? '340px' : 'auto'}; max-height: 450px; object-fit: contain; display: block; border-radius: 8px;">
         </div>
       `;
     }
@@ -495,7 +458,7 @@ function initModals() {
     } else if (data.liveUrl) {
       html += `
         <div style="display: flex; gap: 14px; margin-top: 10px;">
-          <a href="${data.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background: var(--gradient-chikarro); box-shadow: 0 4px 20px rgba(239, 68, 68, 0.35);">
+          <a href="${data.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary">
             <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Live Website
           </a>
         </div>
@@ -570,3 +533,240 @@ function initToast() {
     });
   });
 }
+
+/* ==========================================================================
+   LET'S CONNECT 3-COLUMN CONTACT FORM & EMAILJS DISPATCH
+   ========================================================================== */
+function initContactForm() {
+  const form = document.getElementById('portfolio-contact-form');
+  if (!form) return;
+
+  const nameInput = document.getElementById('contact-name');
+  const emailInput = document.getElementById('contact-email');
+  const messageInput = document.getElementById('contact-message');
+
+  const nameError = document.getElementById('name-error');
+  const emailError = document.getElementById('email-error');
+  const messageError = document.getElementById('message-error');
+
+  const submitBtn = document.getElementById('contact-submit-btn');
+  const statusMsg = document.getElementById('form-status');
+
+  // ========================================================================
+  // EMAILJS CONFIGURATION
+  // To connect your EmailJS account (https://www.emailjs.com):
+  // 1. Create a free account at EmailJS.
+  // 2. Add an Email Service (e.g. Gmail) -> get SERVICE_ID
+  // 3. Create an Email Template -> get TEMPLATE_ID
+  // 4. Get your Public Key from Account Settings -> get PUBLIC_KEY
+  // ========================================================================
+  const EMAILJS_CONFIG = {
+    publicKey: "YOUR_PUBLIC_KEY",     // e.g. "user_xxxxxxxxxxxx"
+    serviceId: "YOUR_SERVICE_ID",     // e.g. "service_xxxxxxx"
+    templateId: "YOUR_TEMPLATE_ID",   // e.g. "template_xxxxxxx"
+    recipientEmail: "sreerajunnikrishnanofficial@gmail.com"
+  };
+
+  // Initialize EmailJS SDK if available
+  if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.publicKey && EMAILJS_CONFIG.publicKey !== "YOUR_PUBLIC_KEY") {
+    emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
+  }
+
+  // RFC 5322 compliant simplified email regex
+  const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+
+  function clearError(input, errorEl) {
+    if (input) input.classList.remove('is-invalid');
+    if (errorEl) errorEl.textContent = '';
+  }
+
+  function setError(input, errorEl, message) {
+    if (input) input.classList.add('is-invalid');
+    if (errorEl) errorEl.textContent = message;
+  }
+
+  // Real-time error dismissal on input
+  if (nameInput) {
+    nameInput.addEventListener('input', () => {
+      if (nameInput.value.trim().length >= 2) {
+        clearError(nameInput, nameError);
+      }
+    });
+  }
+
+  if (emailInput) {
+    emailInput.addEventListener('input', () => {
+      if (emailPattern.test(emailInput.value.trim())) {
+        clearError(emailInput, emailError);
+      }
+    });
+  }
+
+  if (messageInput) {
+    messageInput.addEventListener('input', () => {
+      if (messageInput.value.trim().length >= 5) {
+        clearError(messageInput, messageError);
+      }
+    });
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    let isValid = true;
+    const nameVal = nameInput ? nameInput.value.trim() : '';
+    const emailVal = emailInput ? emailInput.value.trim() : '';
+    const messageVal = messageInput ? messageInput.value.trim() : '';
+
+    // Validate Name
+    if (!nameVal) {
+      setError(nameInput, nameError, 'Please enter your name.');
+      isValid = false;
+    } else if (nameVal.length < 2) {
+      setError(nameInput, nameError, 'Name must be at least 2 characters.');
+      isValid = false;
+    } else {
+      clearError(nameInput, nameError);
+    }
+
+    // Validate Email
+    if (!emailVal) {
+      setError(emailInput, emailError, 'Please enter your email address.');
+      isValid = false;
+    } else if (!emailPattern.test(emailVal)) {
+      setError(emailInput, emailError, 'Please enter a valid email address.');
+      isValid = false;
+    } else {
+      clearError(emailInput, emailError);
+    }
+
+    // Validate Comments / Message
+    if (!messageVal) {
+      setError(messageInput, messageError, 'Please enter your comments or message.');
+      isValid = false;
+    } else if (messageVal.length < 5) {
+      setError(messageInput, messageError, 'Message must be at least 5 characters.');
+      isValid = false;
+    } else {
+      clearError(messageInput, messageError);
+    }
+
+    if (!isValid) {
+      const firstInvalid = form.querySelector('.is-invalid');
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '<span>Get In Touch</span> <i class="fa-solid fa-arrow-right"></i>';
+
+    // Set loading state
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Sending Message...</span>`;
+    }
+    if (statusMsg) {
+      statusMsg.className = 'form-status-msg';
+      statusMsg.innerHTML = '';
+    }
+
+    const templateParams = {
+      name: nameVal,
+      from_name: nameVal,
+      user_name: nameVal,
+      email: emailVal,
+      from_email: emailVal,
+      user_email: emailVal,
+      reply_to: emailVal,
+      message: messageVal,
+      comments: messageVal,
+      to_email: EMAILJS_CONFIG.recipientEmail,
+      subject: `Portfolio Inquiry from ${nameVal}`
+    };
+
+    try {
+      // Check if configured with active EmailJS keys
+      if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.serviceId !== 'YOUR_SERVICE_ID' && EMAILJS_CONFIG.templateId !== 'YOUR_TEMPLATE_ID') {
+        await emailjs.send(
+          EMAILJS_CONFIG.serviceId,
+          EMAILJS_CONFIG.templateId,
+          templateParams,
+          EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY' ? EMAILJS_CONFIG.publicKey : undefined
+        );
+      } else {
+        // Direct AJAX endpoint dispatch to ensure delivery to recipient
+        const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(EMAILJS_CONFIG.recipientEmail)}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: nameVal,
+            email: emailVal,
+            message: messageVal,
+            _subject: `New Portfolio Inquiry from ${nameVal}`,
+            _template: 'table',
+            _captcha: 'false'
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Delivery gateway error');
+        }
+      }
+
+      // Success handling: Clear form and show confirmation on the same page
+      form.reset();
+
+      if (submitBtn) {
+        submitBtn.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>Message Sent!</span>`;
+      }
+
+      if (statusMsg) {
+        statusMsg.className = 'form-status-msg success';
+        statusMsg.innerHTML = `<i class="fa-solid fa-circle-check"></i> Message sent successfully!`;
+      }
+
+      if (window.showToast) {
+        window.showToast('Message sent successfully!');
+      }
+
+      setTimeout(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+        }
+      }, 4000);
+
+      setTimeout(() => {
+        if (statusMsg) {
+          statusMsg.innerHTML = '';
+        }
+      }, 8000);
+
+    } catch (err) {
+      console.error('Submission error:', err);
+
+      if (submitBtn) {
+        submitBtn.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <span>Failed to Send</span>`;
+      }
+
+      if (statusMsg) {
+        statusMsg.className = 'form-status-msg error';
+        statusMsg.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> An error occurred while sending. Please try again.`;
+      }
+
+      if (window.showToast) {
+        window.showToast('Failed to send message. Please try again.');
+      }
+
+      setTimeout(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+        }
+      }, 4000);
+    }
+  });
+}
+
