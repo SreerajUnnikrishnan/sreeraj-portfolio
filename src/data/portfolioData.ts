@@ -428,7 +428,14 @@ export interface Certification {
 }
 
 export const certifications: Certification[] = [
-  { id: 'oscp', name: 'OSCP', full: 'Offensive Security Certified Professional', status: 'Pursuing', note: 'Hands-on offensive lab preparation', accent: 'emerald' },
+  {
+    id: 'ocsp',
+    name: 'OCSP',
+    full: 'Offenso Certified Security Professional',
+    status: 'Completed',
+    note: 'Advanced hands-on security professional training and practical assessment completed via Offenso Hacker Academy',
+    accent: 'emerald',
+  },
   { id: 'ceh', name: 'CEH', full: 'Certified Ethical Hacker', status: 'Pursuing', note: 'Continuing exam & lab preparation', accent: 'cyan' },
   { id: 'thm', name: 'TryHackMe', full: 'Practical Cyber Security Learning Paths', status: 'Completed', note: 'Hands-on offensive & defensive labs', accent: 'cyan' },
   { id: 'labs', name: 'Ethical Hacking Labs', full: 'Advanced Penetration Testing & Security Labs', status: 'Completed', note: 'Practical vulnerability & exploit labs', accent: 'emerald' },
